@@ -42,21 +42,6 @@ const Layout = () => {
                 <span style={{ marginLeft: '12px' }}>My settings</span>
               </NavLink>
 
-              <div className="padding-left-m padding-right-m">
-                <div className="padding-top-base padding-bottom-base">
-                  <div className="separator separator-horizontal background-neutral-7"></div>
-                </div>
-              </div>
-
-              <a href="https://freeinvoicebuilder.com/international-payments/" target="_blank" rel="noreferrer" className="ThemeGrid_MarginGutter">
-                <i className="icon fa fa-credit-card-alt fa-1x" style={{ width: '20px', textAlign: 'center' }}></i>
-                <span style={{ marginLeft: '12px' }}>International payments</span>
-              </a>
-
-              <a href="mailto:contact@freeinvoicebuilder.com" className="ThemeGrid_MarginGutter">
-                <i className="icon fa fa-envelope fa-1x" style={{ width: '20px', textAlign: 'center' }}></i>
-                <span style={{ marginLeft: '12px' }}>Contact us</span>
-              </a>
             </div>
           </nav>
 

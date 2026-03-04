@@ -32,7 +32,7 @@ const Login = () => {
 
     return (
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '100vh', backgroundColor: 'var(--color-background-login)' }}>
-            <div data-container="" className="login-screen" id="LoginDiv" style={{ width: '100%', height: '100vh' }}>
+            <div data-container="" className="login-screen" id="LoginDiv" style={{ width: '100%', maxWidth: '440px', background: '#ffffff', padding: '40px', borderRadius: '12px', boxShadow: '0 8px 30px rgba(0,0,0,0.12)', position: 'relative' }}>
                 <div data-block="CoreWidgets.WB_Login" className="OSBlockWidget" id="$b4">
                     <form data-form="" onSubmit={handleSubmit} className="login-form position-relative" id="b4-LoginForm">
                         <div data-container="" className="absolute-top-right margin-top-base position-absolute margin-right-base" style={{ position: 'absolute', top: '24px', right: '24px', cursor: 'pointer' }}>

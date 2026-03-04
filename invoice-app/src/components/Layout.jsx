@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 const Layout = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { logout } = useAuth();
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -64,7 +67,15 @@ const Layout = () => {
                     <span>Xtreme IT Solution (SMC Private Ltd)</span>
                   </div>
                 </div>
-                <div className="margin-left-s" style={{ cursor: 'pointer' }} title="Logout">
+                <div
+                  className="margin-left-s"
+                  style={{ cursor: 'pointer' }}
+                  title="Logout"
+                  onClick={() => {
+                    logout();
+                    navigate('/login');
+                  }}
+                >
                   <i className="icon fa fa-sign-out fa-1x"></i>
                 </div>
               </div>

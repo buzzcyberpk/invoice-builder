@@ -41,7 +41,7 @@ const Login = () => {
 
                         <div data-container="" className="login-logo" style={{ textAlign: 'center' }}>
                             <div data-container="" id="b4-DivImage" style={{ textAlign: 'center' }}>
-                                <img data-image="" src="/InvoiceBuilder/img/InvoiceBuilder_CW.Invoice.png?INeLRY_F4sR+RpxpAEBbdQ" alt="Free invoice builder login" style={{ width: '120px', height: '120px', borderRadius: '50%' }} />
+                                <img data-image="" src="https://app.freeinvoicebuilder.com/InvoiceBuilder/img/InvoiceBuilder_CW.Invoice.png?INeLRY_F4sR+RpxpAEBbdQ" alt="Logo" style={{ width: '120px', height: '120px', borderRadius: '50%' }} />
                             </div>
                             <h1 data-advancedhtml="" className="margin-top-base" style={{ marginTop: '16px', marginBottom: '32px' }}>
                                 <span data-expression="" className="heading5 text-neutral-8" style={{ fontSize: '20px', color: '#4f575e', fontWeight: '400' }}>Free invoice builder login</span>

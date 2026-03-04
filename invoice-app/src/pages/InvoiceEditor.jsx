@@ -289,12 +289,19 @@ const InvoiceEditor = () => {
                                 (() => {
                                     const selectedClient = clientsList.find(c => c.id.toString() === recipient);
                                     return (
-                                        <div style={{ border: '1px solid var(--color-primary)', padding: '16px', borderRadius: '4px', background: 'var(--color-primary-selected)', position: 'relative' }}>
-                                            <i className="fa fa-times" style={{ position: 'absolute', top: '16px', right: '16px', cursor: 'pointer', color: 'var(--color-neutral-6)' }} onClick={() => setRecipient('')}></i>
-                                            <strong>{selectedClient?.companyName || `${selectedClient?.firstName} ${selectedClient?.lastName}`}</strong><br />
-                                            {selectedClient?.email}<br />
-                                            {selectedClient?.phone && <>{selectedClient.phoneCode} {selectedClient.phone}<br /></>}
-                                            {selectedClient?.country}
+                                        <div style={{ border: '1px solid transparent', padding: '16px', borderRadius: '4px', background: 'var(--color-neutral-1)', position: 'relative', display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+                                            <i className="fa fa-times" style={{ position: 'absolute', top: '16px', right: '16px', cursor: 'pointer', color: 'var(--color-neutral-6)', zIndex: 10 }} onClick={() => setRecipient('')}></i>
+                                            {selectedClient?.logo && (
+                                                <div style={{ width: '48px', height: '48px', flexShrink: 0 }}>
+                                                    <img src={selectedClient.logo} alt="Client Logo" style={{ width: '100%', height: '100%', objectFit: 'contain', borderRadius: '4px' }} />
+                                                </div>
+                                            )}
+                                            <div style={{ paddingRight: '24px' }}>
+                                                <strong>{selectedClient?.companyName || `${selectedClient?.firstName} ${selectedClient?.lastName}`}</strong><br />
+                                                {selectedClient?.email && <>{selectedClient.email}<br /></>}
+                                                {selectedClient?.phone && <>{selectedClient.phoneCode} {selectedClient.phone}<br /></>}
+                                                {selectedClient?.country}
+                                            </div>
                                         </div>
                                     );
                                 })()

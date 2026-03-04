@@ -1,4 +1,6 @@
 /*! CSS Used from: https://app.freeinvoicebuilder.com/InvoiceBuilder/css/_Basic.css?EqGzAe81QbZLXJyfY3oLwA */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 .OSFillParent {
     display: block;
     width: 100%;
@@ -20,6 +22,7 @@
 body {
     margin: 0;
     padding: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 .screen-container {
@@ -238,7 +241,8 @@ body {
     --space-xl: 40px;
     --space-xxl: 48px;
     --border-radius-none: 0;
-    --border-radius-soft: 4px;
+    --border-radius-soft: 8px;
+    /* Standardize modern corner radius */
     --border-radius-rounded: 100px;
     --border-radius-circle: 100%;
     --border-size-none: 0;
@@ -294,7 +298,7 @@ body {
 
 html {
     color: var(--color-neutral-9);
-    font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     overflow: hidden;
@@ -306,7 +310,7 @@ html {
 body {
     background-color: var(--color-background-body);
     direction: ltr;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: var(--font-size-s);
     line-height: 1.5;
     margin: 0;
@@ -575,7 +579,12 @@ body,
     border-left: var(--border-size-m) solid transparent;
     border-top: 0;
     margin-left: 0;
-    padding: var(--space-s) var(--space-m);
+    margin-bottom: 4px;
+    /* Give some breathing room between list items */
+    padding: 12px var(--space-m);
+    border-radius: 0 8px 8px 0;
+    /* So highlight bar matches pills */
+    transition: all 0.2s ease;
 }
 
 .layout-side .app-menu-links {
@@ -701,16 +710,21 @@ body,
     display: inline-flex;
     -webkit-filter: brightness(1);
     filter: brightness(1);
+    font-family: 'Inter', sans-serif;
+    /* Standardize font inside buttons */
     font-weight: var(--font-semi-bold);
-    height: 40px;
+    height: 44px;
+    /* Give buttons more height for mobile and modern style */
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
     line-height: 1;
     margin: 0;
     padding: var(--space-none) var(--space-base);
-    -webkit-transition: all 100ms linear;
-    transition: all 100ms linear;
+    -webkit-transition: all 150ms ease;
+    transition: all 150ms ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    /* Soft click shadow */
 }
 
 .btn:hover:active {

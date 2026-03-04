@@ -86,7 +86,7 @@ const Layout = () => {
                     </div>
                     <div
                       className="margin-left-m"
-                      style={{ cursor: 'pointer', color: 'var(--color-primary)', display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 16px', background: 'var(--color-primary-selected)', borderRadius: '4px' }}
+                      style={{ cursor: 'pointer', color: 'var(--color-primary)', display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 16px', background: 'var(--color-primary-selected)', borderRadius: 'var(--border-radius-soft)' }}
                       title="Logout"
                       onClick={() => {
                         logout();

@@ -1,8 +1,10 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useToast } from '../context/ToastContext';
 
 const NewClient = () => {
     const navigate = useNavigate();
+    const { addToast } = useToast();
     const fileInputRef = useRef(null);
 
     const [logo, setLogo] = useState(null);
@@ -40,7 +42,7 @@ const NewClient = () => {
 
     const handleSave = () => {
         if (!companyName.trim() || !email.trim()) {
-            alert('Please fill in the required fields (Company name, Email address).');
+            addToast('Please fill in the required fields (Company name, Email address).', 'error');
             return;
         }
 
@@ -78,7 +80,7 @@ const NewClient = () => {
             <div className="content-top display-flex align-items-center"></div>
 
             <div className="content-middle">
-                <div className="card" style={{ maxWidth: '800px', margin: '0 auto', padding: '32px', backgroundColor: '#fff', borderRadius: '8px', boxShadow: 'var(--shadow-m)' }}>
+                <div className="card" style={{ maxWidth: '800px', margin: '0 auto', padding: '32px', backgroundColor: '#fff', borderRadius: 'var(--border-radius-soft)', boxShadow: 'var(--shadow-m)' }}>
                     <h1 className="heading2 margin-bottom-l">New client</h1>
 
                     <div style={{ marginBottom: '32px' }}>
@@ -91,7 +93,7 @@ const NewClient = () => {
                             onChange={handleLogoUpload}
                         />
                         <div
-                            style={{ border: '2px dashed var(--color-neutral-4)', borderRadius: '8px', padding: logo ? '10px' : '40px', textAlign: 'center', cursor: 'pointer', background: 'var(--color-neutral-1)' }}
+                            style={{ border: '2px dashed var(--color-neutral-4)', borderRadius: 'var(--border-radius-soft)', padding: logo ? '10px' : '40px', textAlign: 'center', cursor: 'pointer', background: 'var(--color-neutral-1)' }}
                             onClick={() => fileInputRef.current.click()}
                         >
                             {logo ? (
@@ -108,11 +110,11 @@ const NewClient = () => {
                     <div style={{ display: 'flex', gap: '24px', marginBottom: '24px' }}>
                         <div style={{ flex: 1 }}>
                             <label className="text-neutral-8 font-weight-bold" style={{ display: 'block', marginBottom: '8px' }}>Company name <span className="text-red">*</span></label>
-                            <input type="text" value={companyName} onChange={e => setCompanyName(e.target.value)} className="form-control" style={{ width: '100%', padding: '10px', borderRadius: '4px', border: '1px solid var(--color-neutral-4)' }} />
+                            <input type="text" value={companyName} onChange={e => setCompanyName(e.target.value)} className="form-control" style={{ width: '100%', padding: '10px', borderRadius: 'var(--border-radius-soft)', border: '1px solid var(--color-neutral-4)' }} />
                         </div>
                         <div style={{ flex: 1 }}>
                             <label className="text-neutral-8 font-weight-bold" style={{ display: 'block', marginBottom: '8px' }}>Country</label>
-                            <select value={country} onChange={e => setCountry(e.target.value)} className="form-control" style={{ width: '100%', padding: '10px', borderRadius: '4px', border: '1px solid var(--color-neutral-4)' }}>
+                            <select value={country} onChange={e => setCountry(e.target.value)} className="form-control" style={{ width: '100%', padding: '10px', borderRadius: 'var(--border-radius-soft)', border: '1px solid var(--color-neutral-4)' }}>
                                 <option>-</option>
                                 <option>United States</option>
                                 <option>Pakistan</option>
@@ -126,18 +128,18 @@ const NewClient = () => {
                     <div style={{ display: 'flex', gap: '24px', marginBottom: '24px' }}>
                         <div style={{ flex: 1 }}>
                             <label className="text-neutral-8 font-weight-bold" style={{ display: 'block', marginBottom: '8px' }}>First name</label>
-                            <input type="text" value={firstName} onChange={e => setFirstName(e.target.value)} className="form-control" style={{ width: '100%', padding: '10px', borderRadius: '4px', border: '1px solid var(--color-neutral-4)' }} />
+                            <input type="text" value={firstName} onChange={e => setFirstName(e.target.value)} className="form-control" style={{ width: '100%', padding: '10px', borderRadius: 'var(--border-radius-soft)', border: '1px solid var(--color-neutral-4)' }} />
                         </div>
                         <div style={{ flex: 1 }}>
                             <label className="text-neutral-8 font-weight-bold" style={{ display: 'block', marginBottom: '8px' }}>Last name</label>
-                            <input type="text" value={lastName} onChange={e => setLastName(e.target.value)} className="form-control" style={{ width: '100%', padding: '10px', borderRadius: '4px', border: '1px solid var(--color-neutral-4)' }} />
+                            <input type="text" value={lastName} onChange={e => setLastName(e.target.value)} className="form-control" style={{ width: '100%', padding: '10px', borderRadius: 'var(--border-radius-soft)', border: '1px solid var(--color-neutral-4)' }} />
                         </div>
                     </div>
 
                     <div style={{ display: 'flex', gap: '24px', marginBottom: '24px' }}>
                         <div style={{ flex: 1 }}>
                             <label className="text-neutral-8 font-weight-bold" style={{ display: 'block', marginBottom: '8px' }}>Email address <span className="text-red">*</span></label>
-                            <input type="email" value={email} onChange={e => setEmail(e.target.value)} className="form-control" style={{ width: '100%', padding: '10px', borderRadius: '4px', border: '1px solid var(--color-neutral-4)' }} />
+                            <input type="email" value={email} onChange={e => setEmail(e.target.value)} className="form-control" style={{ width: '100%', padding: '10px', borderRadius: 'var(--border-radius-soft)', border: '1px solid var(--color-neutral-4)' }} />
                         </div>
                         <div style={{ flex: 1 }}>
                             <label className="text-neutral-8 font-weight-bold" style={{ display: 'block', marginBottom: '8px' }}>Phone number</label>
@@ -158,33 +160,33 @@ const NewClient = () => {
                     <div style={{ display: 'flex', gap: '24px', marginBottom: '24px' }}>
                         <div style={{ flex: 1 }}>
                             <label className="text-neutral-8 font-weight-bold" style={{ display: 'block', marginBottom: '8px' }}>Address line 1</label>
-                            <input type="text" value={address1} onChange={e => setAddress1(e.target.value)} className="form-control" style={{ width: '100%', padding: '10px', borderRadius: '4px', border: '1px solid var(--color-neutral-4)' }} />
+                            <input type="text" value={address1} onChange={e => setAddress1(e.target.value)} className="form-control" style={{ width: '100%', padding: '10px', borderRadius: 'var(--border-radius-soft)', border: '1px solid var(--color-neutral-4)' }} />
                         </div>
                         <div style={{ flex: 1 }}>
                             <label className="text-neutral-8 font-weight-bold" style={{ display: 'block', marginBottom: '8px' }}>Address line 2</label>
-                            <input type="text" value={address2} onChange={e => setAddress2(e.target.value)} className="form-control" style={{ width: '100%', padding: '10px', borderRadius: '4px', border: '1px solid var(--color-neutral-4)' }} />
+                            <input type="text" value={address2} onChange={e => setAddress2(e.target.value)} className="form-control" style={{ width: '100%', padding: '10px', borderRadius: 'var(--border-radius-soft)', border: '1px solid var(--color-neutral-4)' }} />
                         </div>
                     </div>
 
                     <div style={{ display: 'flex', gap: '24px', marginBottom: '24px' }}>
                         <div style={{ flex: 1 }}>
                             <label className="text-neutral-8 font-weight-bold" style={{ display: 'block', marginBottom: '8px' }}>Postal code</label>
-                            <input type="text" value={postalCode} onChange={e => setPostalCode(e.target.value)} className="form-control" style={{ width: '100%', padding: '10px', borderRadius: '4px', border: '1px solid var(--color-neutral-4)' }} />
+                            <input type="text" value={postalCode} onChange={e => setPostalCode(e.target.value)} className="form-control" style={{ width: '100%', padding: '10px', borderRadius: 'var(--border-radius-soft)', border: '1px solid var(--color-neutral-4)' }} />
                         </div>
                         <div style={{ flex: 1 }}>
                             <label className="text-neutral-8 font-weight-bold" style={{ display: 'block', marginBottom: '8px' }}>City</label>
-                            <input type="text" value={city} onChange={e => setCity(e.target.value)} className="form-control" style={{ width: '100%', padding: '10px', borderRadius: '4px', border: '1px solid var(--color-neutral-4)' }} />
+                            <input type="text" value={city} onChange={e => setCity(e.target.value)} className="form-control" style={{ width: '100%', padding: '10px', borderRadius: 'var(--border-radius-soft)', border: '1px solid var(--color-neutral-4)' }} />
                         </div>
                     </div>
 
                     <div style={{ display: 'flex', gap: '24px', marginBottom: '32px' }}>
                         <div style={{ flex: 1 }}>
                             <label className="text-neutral-8 font-weight-bold" style={{ display: 'block', marginBottom: '8px' }}>Web site</label>
-                            <input type="text" value={website} onChange={e => setWebsite(e.target.value)} className="form-control" style={{ width: '100%', padding: '10px', borderRadius: '4px', border: '1px solid var(--color-neutral-4)' }} />
+                            <input type="text" value={website} onChange={e => setWebsite(e.target.value)} className="form-control" style={{ width: '100%', padding: '10px', borderRadius: 'var(--border-radius-soft)', border: '1px solid var(--color-neutral-4)' }} />
                         </div>
                         <div style={{ flex: 1 }}>
                             <label className="text-neutral-8 font-weight-bold" style={{ display: 'block', marginBottom: '8px' }}>Invoice currency</label>
-                            <select value={currency} onChange={e => setCurrency(e.target.value)} className="form-control" style={{ width: '100%', padding: '10px', borderRadius: '4px', border: '1px solid var(--color-neutral-4)' }}>
+                            <select value={currency} onChange={e => setCurrency(e.target.value)} className="form-control" style={{ width: '100%', padding: '10px', borderRadius: 'var(--border-radius-soft)', border: '1px solid var(--color-neutral-4)' }}>
                                 <option>-</option>
                                 <option>USD ($)</option>
                                 <option>EUR (€)</option>
@@ -195,7 +197,7 @@ const NewClient = () => {
 
                     <div style={{ marginBottom: '32px' }}>
                         <label className="text-neutral-8 font-weight-bold" style={{ display: 'block', marginBottom: '8px' }}>Additional info</label>
-                        <textarea value={additionalInfo} onChange={e => setAdditionalInfo(e.target.value)} className="form-control" style={{ width: '100%', padding: '10px', borderRadius: '4px', border: '1px solid var(--color-neutral-4)', minHeight: '100px' }}></textarea>
+                        <textarea value={additionalInfo} onChange={e => setAdditionalInfo(e.target.value)} className="form-control" style={{ width: '100%', padding: '10px', borderRadius: 'var(--border-radius-soft)', border: '1px solid var(--color-neutral-4)', minHeight: '100px' }}></textarea>
                     </div>
 
                     <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '16px' }}>

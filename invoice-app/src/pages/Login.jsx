@@ -43,7 +43,7 @@ const Login = () => {
             <div style={{
                 background: 'var(--color-neutral-1)',
                 padding: '40px',
-                borderRadius: '8px',
+                borderRadius: 'var(--border-radius-soft)',
                 boxShadow: '0 4px 12px rgba(0,0,0,0.05)',
                 width: '100%',
                 maxWidth: '400px'
@@ -68,7 +68,7 @@ const Login = () => {
                 </div>
 
                 {error && (
-                    <div style={{ padding: '12px', background: '#fee2e2', color: '#b91c1c', borderRadius: '4px', marginBottom: '20px', fontSize: '14px', textAlign: 'center' }}>
+                    <div style={{ padding: '12px', background: '#fee2e2', color: '#b91c1c', borderRadius: 'var(--border-radius-soft)', marginBottom: '20px', fontSize: '14px', textAlign: 'center' }}>
                         {error}
                     </div>
                 )}
@@ -80,7 +80,7 @@ const Login = () => {
                             type="text"
                             required
                             className="form-control"
-                            style={{ width: '100%', padding: '12px', border: '1px solid var(--color-neutral-4)', borderRadius: '4px' }}
+                            style={{ width: '100%', padding: '12px', border: '1px solid var(--color-neutral-4)', borderRadius: 'var(--border-radius-soft)' }}
                             placeholder="admin"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
@@ -92,7 +92,7 @@ const Login = () => {
                             type="password"
                             required
                             className="form-control"
-                            style={{ width: '100%', padding: '12px', border: '1px solid var(--color-neutral-4)', borderRadius: '4px' }}
+                            style={{ width: '100%', padding: '12px', border: '1px solid var(--color-neutral-4)', borderRadius: 'var(--border-radius-soft)' }}
                             placeholder="••••••••"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}

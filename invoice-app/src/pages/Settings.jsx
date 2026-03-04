@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useToast } from '../context/ToastContext';
 
 const Settings = () => {
+    const { addToast } = useToast();
     const fileInputRef = useRef(null);
     // Basic form state
     const [formData, setFormData] = useState({
@@ -48,7 +50,7 @@ const Settings = () => {
 
     const handleSave = () => {
         localStorage.setItem('invoiceApp_settings', JSON.stringify(formData));
-        alert('Settings saved successfully!');
+        addToast('Settings saved successfully!', 'success');
     };
 
     return (
@@ -62,7 +64,7 @@ const Settings = () => {
             </div>
 
             <div className="content-middle">
-                <div className="card" style={{ padding: '40px', backgroundColor: '#fff', boxShadow: 'var(--shadow-m)', borderRadius: '8px', maxWidth: '900px', margin: '0 auto' }}>
+                <div className="card" style={{ padding: '40px', backgroundColor: '#fff', boxShadow: 'var(--shadow-m)', borderRadius: 'var(--border-radius-soft)', maxWidth: '900px', margin: '0 auto' }}>
 
                     {/* Logo Section */}
                     <div style={{ marginBottom: '32px' }}>
@@ -94,7 +96,7 @@ const Settings = () => {
                         {/* Type Toggle */}
                         <div>
                             <span className="text-neutral-7 margin-bottom-s display-block" style={{ fontSize: '14px' }}>I am</span>
-                            <div style={{ display: 'flex', border: '1px solid var(--color-primary)', borderRadius: '4px', overflow: 'hidden' }}>
+                            <div style={{ display: 'flex', border: '1px solid var(--color-primary)', borderRadius: 'var(--border-radius-soft)', overflow: 'hidden' }}>
                                 <button
                                     onClick={() => setFormData({ ...formData, type: 'Individual' })}
                                     style={{ flex: 1, padding: '12px', border: 'none', background: formData.type === 'Individual' ? 'var(--color-primary)' : 'transparent', color: formData.type === 'Individual' ? '#fff' : 'var(--color-primary)', fontWeight: 'bold', cursor: 'pointer' }}>
@@ -111,37 +113,37 @@ const Settings = () => {
                         {/* Sender Name */}
                         <div>
                             <span className="text-neutral-7 margin-bottom-s display-block" style={{ fontSize: '14px' }}>Sender name <span style={{ color: 'red' }}>*</span></span>
-                            <input type="text" name="senderName" value={formData.senderName} onChange={handleChange} className="form-control" style={{ width: '100%', padding: '12px', border: '1px solid var(--color-neutral-4)', borderRadius: '4px' }} />
+                            <input type="text" name="senderName" value={formData.senderName} onChange={handleChange} className="form-control" style={{ width: '100%', padding: '12px', border: '1px solid var(--color-neutral-4)', borderRadius: 'var(--border-radius-soft)' }} />
                         </div>
 
                         {/* Address 1 */}
                         <div>
                             <span className="text-neutral-7 margin-bottom-s display-block" style={{ fontSize: '14px' }}>Address line 1</span>
-                            <input type="text" name="address1" value={formData.address1} onChange={handleChange} className="form-control" style={{ width: '100%', padding: '12px', border: '1px solid var(--color-neutral-4)', borderRadius: '4px' }} />
+                            <input type="text" name="address1" value={formData.address1} onChange={handleChange} className="form-control" style={{ width: '100%', padding: '12px', border: '1px solid var(--color-neutral-4)', borderRadius: 'var(--border-radius-soft)' }} />
                         </div>
 
                         {/* Address 2 */}
                         <div>
                             <span className="text-neutral-7 margin-bottom-s display-block" style={{ fontSize: '14px' }}>Address line 2</span>
-                            <input type="text" name="address2" value={formData.address2} onChange={handleChange} className="form-control" style={{ width: '100%', padding: '12px', border: '1px solid var(--color-neutral-4)', borderRadius: '4px' }} />
+                            <input type="text" name="address2" value={formData.address2} onChange={handleChange} className="form-control" style={{ width: '100%', padding: '12px', border: '1px solid var(--color-neutral-4)', borderRadius: 'var(--border-radius-soft)' }} />
                         </div>
 
                         {/* Postal Code */}
                         <div>
                             <span className="text-neutral-7 margin-bottom-s display-block" style={{ fontSize: '14px' }}>Postal code</span>
-                            <input type="text" name="postalCode" value={formData.postalCode} onChange={handleChange} className="form-control" style={{ width: '100%', padding: '12px', border: '1px solid var(--color-neutral-4)', borderRadius: '4px' }} />
+                            <input type="text" name="postalCode" value={formData.postalCode} onChange={handleChange} className="form-control" style={{ width: '100%', padding: '12px', border: '1px solid var(--color-neutral-4)', borderRadius: 'var(--border-radius-soft)' }} />
                         </div>
 
                         {/* City */}
                         <div>
                             <span className="text-neutral-7 margin-bottom-s display-block" style={{ fontSize: '14px' }}>City</span>
-                            <input type="text" name="city" value={formData.city} onChange={handleChange} className="form-control" style={{ width: '100%', padding: '12px', border: '1px solid var(--color-neutral-4)', borderRadius: '4px' }} />
+                            <input type="text" name="city" value={formData.city} onChange={handleChange} className="form-control" style={{ width: '100%', padding: '12px', border: '1px solid var(--color-neutral-4)', borderRadius: 'var(--border-radius-soft)' }} />
                         </div>
 
                         {/* Country */}
                         <div>
                             <span className="text-neutral-7 margin-bottom-s display-block" style={{ fontSize: '14px' }}>Country</span>
-                            <div style={{ display: 'flex', alignItems: 'center', border: '1px solid var(--color-neutral-4)', borderRadius: '4px', padding: '12px' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', border: '1px solid var(--color-neutral-4)', borderRadius: 'var(--border-radius-soft)', padding: '12px' }}>
                                 <input type="text" name="country" value={formData.country} onChange={handleChange} style={{ border: 'none', outline: 'none', flex: 1, background: 'transparent' }} />
                                 <i className="fa fa-times margin-right-s" style={{ color: 'var(--color-neutral-5)', cursor: 'pointer' }} onClick={() => setFormData({ ...formData, country: '' })}></i>
                                 <i className="fa fa-chevron-down" style={{ color: 'var(--color-neutral-5)' }}></i>
@@ -151,13 +153,13 @@ const Settings = () => {
                         {/* Email */}
                         <div>
                             <span className="text-neutral-7 margin-bottom-s display-block" style={{ fontSize: '14px' }}>Email</span>
-                            <input type="email" name="email" value={formData.email} onChange={handleChange} className="form-control" style={{ width: '100%', padding: '12px', border: '1px solid var(--color-neutral-4)', borderRadius: '4px' }} />
+                            <input type="email" name="email" value={formData.email} onChange={handleChange} className="form-control" style={{ width: '100%', padding: '12px', border: '1px solid var(--color-neutral-4)', borderRadius: 'var(--border-radius-soft)' }} />
                         </div>
 
                         {/* Phone */}
                         <div>
                             <span className="text-neutral-7 margin-bottom-s display-block" style={{ fontSize: '14px' }}>Phone number</span>
-                            <div style={{ display: 'flex', border: '1px solid var(--color-neutral-4)', borderRadius: '4px', overflow: 'hidden' }}>
+                            <div style={{ display: 'flex', border: '1px solid var(--color-neutral-4)', borderRadius: 'var(--border-radius-soft)', overflow: 'hidden' }}>
                                 <div style={{ display: 'flex', alignItems: 'center', background: 'var(--color-neutral-2)', padding: '0 12px', borderRight: '1px solid var(--color-neutral-4)' }}>
                                     <div style={{ width: '20px', height: '14px', background: '#ccc', marginRight: '8px' }}></div>
                                     <span style={{ fontSize: '14px' }}>{formData.phonePrefix}</span>
@@ -170,19 +172,19 @@ const Settings = () => {
                         {/* Tax Number */}
                         <div>
                             <span className="text-neutral-7 margin-bottom-s display-block" style={{ fontSize: '14px' }}>Tax registration number</span>
-                            <input type="text" name="taxNumber" value={formData.taxNumber} onChange={handleChange} className="form-control" style={{ width: '100%', padding: '12px', border: '1px solid var(--color-neutral-4)', borderRadius: '4px' }} />
+                            <input type="text" name="taxNumber" value={formData.taxNumber} onChange={handleChange} className="form-control" style={{ width: '100%', padding: '12px', border: '1px solid var(--color-neutral-4)', borderRadius: 'var(--border-radius-soft)' }} />
                         </div>
 
                         {/* Website */}
                         <div>
                             <span className="text-neutral-7 margin-bottom-s display-block" style={{ fontSize: '14px' }}>Web Site</span>
-                            <input type="text" name="website" value={formData.website} onChange={handleChange} className="form-control" style={{ width: '100%', padding: '12px', border: '1px solid var(--color-neutral-4)', borderRadius: '4px' }} />
+                            <input type="text" name="website" value={formData.website} onChange={handleChange} className="form-control" style={{ width: '100%', padding: '12px', border: '1px solid var(--color-neutral-4)', borderRadius: 'var(--border-radius-soft)' }} />
                         </div>
 
                         {/* Default Currency */}
                         <div>
                             <span className="text-neutral-7 margin-bottom-s display-block" style={{ fontSize: '14px' }}>Default invoice currency</span>
-                            <div style={{ display: 'flex', alignItems: 'center', border: '1px solid var(--color-neutral-4)', borderRadius: '4px', padding: '12px' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', border: '1px solid var(--color-neutral-4)', borderRadius: 'var(--border-radius-soft)', padding: '12px' }}>
                                 <input type="text" name="currency" value={formData.currency} onChange={handleChange} style={{ border: 'none', outline: 'none', flex: 1, background: 'transparent' }} />
                                 <i className="fa fa-times margin-right-s" style={{ color: 'var(--color-neutral-5)', cursor: 'pointer' }} onClick={() => setFormData({ ...formData, currency: '' })}></i>
                                 <i className="fa fa-chevron-down" style={{ color: 'var(--color-neutral-5)' }}></i>
@@ -192,25 +194,25 @@ const Settings = () => {
                         {/* Invoice Due Days */}
                         <div>
                             <span className="text-neutral-7 margin-bottom-s display-block" style={{ fontSize: '14px' }}>Invoice due days</span>
-                            <input type="number" name="dueDays" value={formData.dueDays} onChange={handleChange} className="form-control" style={{ width: '100%', padding: '12px', border: '1px solid var(--color-neutral-4)', borderRadius: '4px' }} />
+                            <input type="number" name="dueDays" value={formData.dueDays} onChange={handleChange} className="form-control" style={{ width: '100%', padding: '12px', border: '1px solid var(--color-neutral-4)', borderRadius: 'var(--border-radius-soft)' }} />
                         </div>
 
                         {/* Bank Details */}
                         <div>
                             <span className="text-neutral-7 margin-bottom-s display-block" style={{ fontSize: '14px' }}>Bank account details</span>
-                            <textarea name="bankDetails" value={formData.bankDetails} onChange={handleChange} className="form-control" style={{ width: '100%', padding: '12px', border: '1px solid var(--color-neutral-4)', borderRadius: '4px', minHeight: '80px', resize: 'vertical' }}></textarea>
+                            <textarea name="bankDetails" value={formData.bankDetails} onChange={handleChange} className="form-control" style={{ width: '100%', padding: '12px', border: '1px solid var(--color-neutral-4)', borderRadius: 'var(--border-radius-soft)', minHeight: '80px', resize: 'vertical' }}></textarea>
                         </div>
                     </div>
 
                     {/* Actions */}
                     <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-                        <button className="btn" style={{ padding: '12px 24px', background: 'var(--color-neutral-1)', border: '1px solid var(--color-neutral-5)', borderRadius: '4px', color: 'var(--color-neutral-8)' }}>
+                        <button className="btn" style={{ padding: '12px 24px', background: 'var(--color-neutral-1)', border: '1px solid var(--color-neutral-5)', borderRadius: 'var(--border-radius-soft)', color: 'var(--color-neutral-8)' }}>
                             Cancel
                         </button>
-                        <button className="btn btn-primary" onClick={handleSave} style={{ padding: '12px 24px', borderRadius: '4px', background: 'var(--color-primary)', border: 'none', color: '#fff' }}>
+                        <button className="btn btn-primary" onClick={handleSave} style={{ padding: '12px 24px', borderRadius: 'var(--border-radius-soft)', background: 'var(--color-primary)', border: 'none', color: '#fff' }}>
                             <i className="fa fa-floppy-o margin-right-s"></i> Save
                         </button>
-                        <button className="btn" style={{ padding: '12px 24px', background: 'transparent', border: '1px solid var(--color-primary)', borderRadius: '4px', color: 'var(--color-primary)', display: 'flex', alignItems: 'center' }}>
+                        <button className="btn" style={{ padding: '12px 24px', background: 'transparent', border: '1px solid var(--color-primary)', borderRadius: 'var(--border-radius-soft)', color: 'var(--color-primary)', display: 'flex', alignItems: 'center' }}>
                             <i className="fa fa-key margin-right-s"></i> Change password
                         </button>
                     </div>

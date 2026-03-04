@@ -79,13 +79,13 @@ const Clients = () => {
                 </div>
 
                 {filteredClients.length === 0 ? (
-                    <div className="text-center" style={{ padding: '64px', border: '1px dashed var(--color-neutral-5)', borderRadius: '8px', marginTop: '32px', textAlign: 'center' }}>
+                    <div className="text-center" style={{ padding: '64px', border: '1px dashed var(--color-neutral-5)', borderRadius: 'var(--border-radius-soft)', marginTop: '32px', textAlign: 'center' }}>
                         <div className="text-neutral-6 heading4">No clients match your search.</div>
                     </div>
                 ) : (
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '24px', marginTop: '32px' }}>
                         {currentClients.map((client, idx) => (
-                            <div key={client.id || idx} className="card" style={{ padding: '24px', backgroundColor: '#fff', borderRadius: '8px', boxShadow: 'var(--shadow-xs)' }}>
+                            <div key={client.id || idx} className="card" style={{ padding: '24px', backgroundColor: '#fff', borderRadius: 'var(--border-radius-soft)', boxShadow: 'var(--shadow-xs)' }}>
                                 <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '24px' }}>
                                     <div style={{ width: '56px', height: '56px', borderRadius: '50%', background: client.bg || '#4267B2', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px', fontWeight: 'bold', overflow: 'hidden' }}>
                                         {client.logo ? (

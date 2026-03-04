@@ -58,28 +58,6 @@ const Layout = () => {
                 <span style={{ marginLeft: '12px' }}>Contact us</span>
               </a>
             </div>
-
-            <div className="app-login-info ph" id="b2-LoginInfo">
-              <div className="user-info">
-                <div>
-                  <img className="img-circle" src="https://ui-avatars.com/api/?name=Xtreme+IT&background=0D8ABC&color=fff" alt="User" style={{ width: '24px', height: '24px' }} />
-                  <div className="margin-left-s username-color">
-                    <span>Xtreme IT Solution (SMC Private Ltd)</span>
-                  </div>
-                </div>
-                <div
-                  className="margin-left-s"
-                  style={{ cursor: 'pointer' }}
-                  title="Logout"
-                  onClick={() => {
-                    logout();
-                    navigate('/login');
-                  }}
-                >
-                  <i className="icon fa fa-sign-out fa-1x"></i>
-                </div>
-              </div>
-            </div>
           </nav>
 
           <div className="app-menu-overlay" role="button" onClick={toggleMenu} aria-label="Close menu" style={{ cursor: 'pointer', ...isMenuOpen ? { opacity: 1, pointerEvents: 'auto' } : {} }}></div>
@@ -97,19 +75,42 @@ const Layout = () => {
                 <div className="menu-icon-line" aria-hidden="true"></div>
                 <div className="menu-icon-line" aria-hidden="true"></div>
               </div>
-              <div className="header-navigation OSInline" id="b1-Header"></div>
+              <div className="header-navigation OSInline" id="b1-Header" style={{ display: 'flex', justifyContent: 'flex-end', flex: 1 }}>
+                <div className="app-login-info" style={{ display: 'flex', alignItems: 'center', padding: '0 16px' }}>
+                  <div className="user-info" style={{ display: 'flex', alignItems: 'center' }}>
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                      <img className="img-circle" src="https://ui-avatars.com/api/?name=Xtreme+IT&background=0D8ABC&color=fff" alt="User" style={{ width: '24px', height: '24px' }} />
+                      <div className="margin-left-s username-color hidden-phone">
+                        <span>Xtreme IT Solution (SMC Private Ltd)</span>
+                      </div>
+                    </div>
+                    <div
+                      className="margin-left-m"
+                      style={{ cursor: 'pointer', color: 'var(--color-primary)', display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 16px', background: 'var(--color-primary-selected)', borderRadius: '4px' }}
+                      title="Logout"
+                      onClick={() => {
+                        logout();
+                        navigate('/login');
+                      }}
+                    >
+                      <span className="hidden-phone" style={{ fontWeight: 'bold' }}>Logout</span>
+                      <i className="icon fa fa-sign-out fa-1px"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </header>
+        </header >
 
         {/* Page Content */}
-        <div className="content" id="b1-Content">
+        < div className="content" id="b1-Content" >
           <div className="main-content ThemeGrid_Container" role="main" id="b1-MainContentWrapper">
             <Outlet />
           </div>
-        </div>
-      </div>
-    </div>
+        </div >
+      </div >
+    </div >
   );
 };
 

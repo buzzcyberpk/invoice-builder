@@ -3,8 +3,8 @@ import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-    const [username, setUsername] = useState('buzzpk@gmail.com');
-    const [password, setPassword] = useState('u3J@zHL@PH4#dgA');
+    const [username, setUsername] = useState('arslan');
+    const [password, setPassword] = useState('pass123456');
     const [showPassword, setShowPassword] = useState(false);
     const [error, setError] = useState('');
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -170,7 +170,7 @@ const Login = () => {
                                 className="btn btn-primary full-width"
                                 type="button"
                                 onClick={() => {
-                                    login('admin', 'password123');
+                                    login('arslan', 'pass123456');
                                     navigate('/');
                                 }}
                                 style={{ width: '100%', height: '48px', background: '#4263eb', border: 'none', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}

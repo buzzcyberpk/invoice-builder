@@ -9,6 +9,7 @@ import Clients from './pages/Clients';
 import NewClient from './pages/NewClient';
 import Settings from './pages/Settings';
 import Login from './pages/Login';
+import Signup from './pages/Signup';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
 
             <Route path="/" element={<PrivateRoute />}>
               <Route element={<Layout />}>

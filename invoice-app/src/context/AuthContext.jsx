@@ -1,67 +1,90 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
+import { supabase } from '../supabaseClient';
 
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [user, setUser] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        // Check if user is already logged in and session is valid
-        const sessionData = localStorage.getItem('invoiceApp_auth');
-        if (sessionData) {
-            try {
-                const session = JSON.parse(sessionData);
-                const now = new Date().getTime();
-
-                // Check if the 7-day expiration timestamp has passed
-                if (session.expiresAt && now < session.expiresAt) {
-                    setIsAuthenticated(true);
-                } else {
-                    // Session expired, clear it
-                    localStorage.removeItem('invoiceApp_auth');
-                }
-            } catch (e) {
-                // Invalid JSON, clear it
-                localStorage.removeItem('invoiceApp_auth');
+        // Check active sessions and sets the user
+        const getSession = async () => {
+            const { data: { session }, error } = await supabase.auth.getSession();
+            if (session) {
+                setIsAuthenticated(true);
+                setUser(session.user);
+            } else {
+                setIsAuthenticated(false);
+                setUser(null);
             }
-        }
-        setIsLoading(false);
+            setIsLoading(false);
+        };
+
+        getSession();
+
+        // Listen for changes on auth state (logged in, signed out, etc.)
+        const { data: { subscription } } = supabase.auth.onAuthStateChange(
+            (event, session) => {
+                if (session) {
+                    setIsAuthenticated(true);
+                    setUser(session.user);
+                } else {
+                    setIsAuthenticated(false);
+                    setUser(null);
+                }
+                setIsLoading(false);
+            }
+        );
+
+        return () => subscription.unsubscribe();
     }, []);
 
-    const login = (username, password) => {
-        // Hardcoded credentials for demonstration
-        // You can change these to whatever you prefer, or load from .env
-        const validUsername = import.meta.env.VITE_ADMIN_USER || 'arslan';
-        const validPassword = import.meta.env.VITE_ADMIN_PASSWORD || 'pass123456';
+    const login = async (email, password) => {
+        try {
+            const { data, error } = await supabase.auth.signInWithPassword({
+                email,
+                password,
+            });
 
-        if (username === validUsername && password === validPassword) {
-            setIsAuthenticated(true);
-
-            // Set session to expire in 7 days
-            const MS_IN_DAY = 24 * 60 * 60 * 1000;
-            const expiresAt = new Date().getTime() + (7 * MS_IN_DAY);
-
-            localStorage.setItem('invoiceApp_auth', JSON.stringify({
-                authenticated: true,
-                expiresAt: expiresAt
-            }));
-            return true;
+            if (error) {
+                return { success: false, error: error.message };
+            }
+            
+            return { success: true };
+        } catch (error) {
+            return { success: false, error: 'An unexpected error occurred' };
         }
-        return false;
     };
 
-    const logout = () => {
-        setIsAuthenticated(false);
-        localStorage.removeItem('invoiceApp_auth');
+    const signup = async (email, password) => {
+        try {
+            const { data, error } = await supabase.auth.signUp({
+                email,
+                password,
+            });
+
+            if (error) {
+                return { success: false, error: error.message };
+            }
+
+            return { success: true, data };
+        } catch (error) {
+            return { success: false, error: 'An unexpected error occurred' };
+        }
+    };
+
+    const logout = async () => {
+        await supabase.auth.signOut();
     };
 
     if (isLoading) {
-        return null; // Or a loading spinner
+        return <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh'}}>Loading...</div>;
     }
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+        <AuthContext.Provider value={{ isAuthenticated, user, login, signup, logout }}>
             {children}
         </AuthContext.Provider>
     );

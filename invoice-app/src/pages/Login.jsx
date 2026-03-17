@@ -17,15 +17,12 @@ const Login = () => {
         setError('');
         setIsSubmitting(true);
 
-        // Simulate network delay for UI feedback
-        await new Promise(r => setTimeout(r, 600));
-
-        const success = login(username, password);
+        const { success, error: authError } = await login(username, password);
 
         if (success) {
             navigate('/');
         } else {
-            setError('Invalid email address or password');
+            setError(authError || 'Invalid email address or password');
             setIsSubmitting(false);
         }
     };
@@ -149,7 +146,7 @@ const Login = () => {
 
                         <div data-container="" className="margin-top-m text-align-center" style={{ marginTop: '24px', textAlign: 'center', color: '#272b30' }}>
                             <span className="font-semi-bold" style={{ fontWeight: 600 }}>Don't have an account?</span>
-                            <a data-link="" className="ThemeGrid_MarginGutter" href="#">
+                            <a data-link="" className="ThemeGrid_MarginGutter" onClick={() => navigate('/signup')} style={{ cursor: 'pointer' }}>
                                 <span className="margin-left-s font-semi-bold" style={{ marginLeft: '8px', fontWeight: 600, color: '#4263eb' }}>Sign up here</span>
                             </a>
                         </div>
@@ -169,9 +166,9 @@ const Login = () => {
                                 data-button=""
                                 className="btn btn-primary full-width"
                                 type="button"
-                                onClick={() => {
-                                    login('arslan', 'pass123456');
-                                    navigate('/');
+                                onClick={async () => {
+                                    const { success } = await login('arslan', 'pass123456');
+                                    if(success) navigate('/');
                                 }}
                                 style={{ width: '100%', height: '48px', background: '#4263eb', border: 'none', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                             >
